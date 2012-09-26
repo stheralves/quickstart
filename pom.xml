@@ -18,13 +18,13 @@
         <version>8</version>
         <relativePath />
     </parent>
-    <groupId>org.jboss.as.quickstarts</groupId>
-    <artifactId>jboss-as-quickstarts-parent</artifactId>
-    <version>7.1.2-SNAPSHOT</version>
+    <groupId>org.jboss.wfk.quickstarts</groupId>
+    <artifactId>jboss-wfk-quickstarts-parent</artifactId>
+    <version>2.1.0</version>
     <packaging>pom</packaging>
-    <name>JBoss AS Quickstarts Parent</name>
-    <description>JBoss AS Quickstarts Parent</description>
-    <url>http://www.jboss.org/jdf/quickstarts/get-started/</url>
+    <name>JBoss WFK Quickstarts Parent</name>
+    <description>JBoss WFK Quickstarts Parent</description>
+    <url>http://github.com/jboss-eap/quickstart</url>
 
     <licenses>
         <license>
