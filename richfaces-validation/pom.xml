@@ -44,7 +44,7 @@
         <version.com.redhat.jboss.wfk.boms>1.0.1.Final-redhat-1</version.com.redhat.jboss.wfk.boms>
 
         <version.org.hibernate-jpamodelgen>1.1.1.Final</version.org.hibernate-jpamodelgen>
-        <version.org.hibernate.validator>4.2.0.Final</version.org.hibernate.validator>
+        <version.org.hibernate.validator>4.2.0.Final-redhat-1</version.org.hibernate.validator>
 
         <version.org.richfaces>4.2.3.Final-redhat-1</version.org.richfaces>
 
