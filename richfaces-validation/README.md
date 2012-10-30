@@ -30,7 +30,7 @@ The application contains a view layer written using JSF and RichFaces and includ
 
 Once users are successfully registered, they are redirected back to the initial page with a message that the registration was successful.
 
-This quickstart also includes tests for all Bean Validation constraints for the `Member` entity. This allows you to check constraints without without the need for a view layer. The tests are written using the Arquillian framework.
+This quickstart also includes tests for all Bean Validation constraints for the `Member` entity. This allows you to check constraints  without the need for a view layer. The tests are written using the Arquillian framework.
 
 
 System requirements
