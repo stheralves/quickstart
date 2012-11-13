@@ -86,8 +86,8 @@ If you are using the JBoss Enterprise Application Platform 6 distribution, you n
 
 1. Download the JBoss Enterprise Application Platform 6 Maven repository distribution ZIP and Web Framework Kit Maven repository zip, unzip every Maven repository zip file into a directory of your choice.
 
-2. Modify the `settings-eap-example.xml` file located in the root of your quickstarts folder. 
-    * Replace all instances of ${eapMavenRepoUrl} within `file:///path/to/jboss-eap/repo` with the fully qualified path to the Maven repository you unzipped in the previous step.
+2. Modify the `settings-wfk-example.xml` file located in the root of your quickstarts folder. 
+    * Replace all instances of ${eapMavenRepoUrl} with the fully qualified path to the Maven repository you unzipped in the previous step.
     * Be sure to use 3 forward slashes after `file:`: 2 for the protocol and 1 for the fully qualified path. For example:
 
             file:///home/username/Quickstarts/jboss-eap-6.0-quickstarts
@@ -97,14 +97,14 @@ If you are using the JBoss Enterprise Application Platform 6 distribution, you n
 
             For Linux or Mac:   ~/.m2/settings.xml
             For Windows: \Documents and Settings\USER_NAME\.m2\settings.xml or \Users\USER_NAME\.m2\settings.xml
-    * If you have an existing `settings.xml` file, modify it with the configuration information from the `example-settings.xml` file.
-    * If there is no `settings.xml` file, copy the modified `example-settings.xml` file to the `m2` directory for your operating system and rename it to `settings.xml`.
+    * If you have an existing `settings.xml` file, modify it with the configuration information from the `example-wfk-settings.xml` file.
+    * If there is no `settings.xml` file, copy the modified `example-wfk-settings.xml` file to the `m2` directory for your operating system and rename it to `settings.xml`.
 
-4. If you choose not to configure the `settings.xml` file described in the previous step, you must append `-s PATH_TO_QUICKSTARTS/example-settings.xml` to every Maven command. 
+4. If you choose not to configure the `settings.xml` file described in the previous step, you must append `-s PATH_TO_QUICKSTARTS/example-wfk-settings.xml` to every Maven command. 
     * _Note: This only valid only when you run the quickstarts using the command line._  
     * The following is an example of a deployment passing the Maven settings using the command line:
 
-            mvn jboss-as:deploy -s PATH_TO_QUICKSTARTS/example-settings.xml
+            mvn jboss-as:deploy -s PATH_TO_QUICKSTARTS/example-wfk-settings.xml
 
 
 <a id="as7mavenconfig"></a>
@@ -185,7 +185,7 @@ In some cases, you may want to build the application to test for compile errors 
 
         For JBoss Enterprise Application Platform 6 (Maven user settings NOT configured): 
 
-            mvn clean package -s PATH_TO_QUICKSTARTS/example-settings.xml
+            mvn clean package -s PATH_TO_QUICKSTARTS/settings-wfk-example.xml
 
 #### Build and Deploy the Quickstart Archive
 
@@ -199,7 +199,7 @@ In some cases, you may want to build the application to test for compile errors 
 
         For JBoss Enterprise Application Platform 6 (Maven user settings NOT configured): 
 
-            mvn clean package jboss-as:deploy -s PATH_TO_QUICKSTARTS/example-settings.xml
+            mvn clean package jboss-as:deploy -s PATH_TO_QUICKSTARTS/settings-wfk-example.xml
 
 #### Undeploy an Archive
 
@@ -228,7 +228,7 @@ You can run these tests using either a remote or managed container. The quicksta
 
         For JBoss Enterprise Application Platform 6 (Maven user settings NOT configured): 
 
-            mvn clean test -Parq-jbossas-remote -s PATH_TO_QUICKSTARTS/example-settings.xml
+            mvn clean test -Parq-jbossas-remote -s PATH_TO_QUICKSTARTS/settings-wfk-example.xml
 <a id="testmanaged"></a>
 
 2. Test the quickstart on Managed Server
@@ -248,7 +248,7 @@ You can run these tests using either a remote or managed container. The quicksta
 
         For JBoss Enterprise Application Platform 6 (Maven user settings NOT configured): 
 
-            mvn clean test -Parq-jbossas-managed  -s PATH_TO_QUICKSTARTS/example-settings.xml
+            mvn clean test -Parq-jbossas-managed  -s PATH_TO_QUICKSTARTS/settings-wfk-example.xml
 
         For JBoss AS 7 or JBoss Enterprise Application Platform 6 (Maven user settings configured): 
 

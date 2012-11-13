@@ -181,15 +181,48 @@ under the License.
         </pluginRepository>
       </pluginRepositories>      
     </profile>
+    <profile>
+      <id>jboss-wfk-repository</id>
+       <repositories>
+         <repository>
+           <id>jboss-wfk-repository</id>
+           <name>JBoss WFK Maven Repository</name>
+           <url>file:///path/to/repo/jboss-wfk-2.1.0-maven-repository</url>
+           <layout>default</layout>
+           <releases>
+             <enabled>true</enabled>
+             <updatePolicy>never</updatePolicy>
+           </releases>
+           <snapshots>
+             <enabled>false</enabled>
+             <updatePolicy>never</updatePolicy>
+           </snapshots>
+         </repository>
+       </repositories>
+       <pluginRepositories>
+         <pluginRepository>
+           <id>jboss-wfk-repository</id>
+           <name>JBoss WFK Maven Repository</name>
+           <url>file:///path/to/repo/jboss-wfk-2.1.0-maven-repository</url>
+           <layout>default</layout>
+           <releases>
+             <enabled>true</enabled>
+             <updatePolicy>never</updatePolicy>
+           </releases>
+           <snapshots>
+             <enabled>false</enabled>
+             <updatePolicy>never</updatePolicy>
+           </snapshots>
+         </pluginRepository>
+       </pluginRepositories>
+     </profile>
   </profiles>
 
   <!-- activeProfiles
    | List of profiles that are active for all builds.
-   |
+   |-->
   <activeProfiles>
-    <activeProfile>alwaysActiveProfile</activeProfile>
-    <activeProfile>anotherAlwaysActiveProfile</activeProfile>
+    <activeProfile>jboss-wfk-repository</activeProfile>
   </activeProfiles>
-  -->
 </settings>
 

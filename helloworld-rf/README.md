@@ -9,7 +9,7 @@ Target Product: WFK
 What is it?
 -----------
 
-This project demonstrates how to create a Java EE 6 compliant application using JSF 2.0, CDI 1.0, and RichFaces 4.1.  
+This project demonstrates how to create a Java EE 6 compliant application using JSF 2, CDI 1.0, and RichFaces 4.2.  
 
 In this example, a standard JSF `h:inputText` component is AJAX enabled using the RichFaces `a4j:ajax tag`. This triggers the application server to re-render only a subsection of the page on a browser event.
 
