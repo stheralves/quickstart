@@ -319,3 +319,324 @@ You can run these tests using either a remote or managed container. The quicksta
 Use JBoss Developer Studio or Eclipse to Run the Quickstarts
 -------------------------------------
 You can also deploy the quickstarts from Eclipse using JBoss tools. For more information on how to set up Maven and the JBoss tools, refer to the [JBoss Enterprise Application Platform 6 Development Guide](https://access.redhat.com/knowledge/docs/JBoss_Enterprise_Application_Platform/) or [Get Started Developing Applications](http://www.jboss.org/jdf/quickstarts/jboss-as-quickstart/guide/Introduction/ "Get Started Developing Applications").
+
+
+<a id="optionalcomponents"></a>
+Optional Components 
+-------------------
+The following components are needed for only a small subset of the quickstarts. Do not install or configure them unless the quickstart requires it.
+
+* [Add a User](#adduser): Add a Management or Application user for the quickstarts that run in a secured mode.
+
+* [Install and Configure the PostgreSQL Database](#postgresql): The PostgreSQL database is used for the distributed transaction quickstarts.
+
+* [Install and Configure Byteman](#byteman): This tool is used to demonstrate crash recovery for distributed transaction quickstarts.
+
+
+<a id="adduser"></a>
+### Add a Management or Application User
+
+By default, JBoss Enterprise Application Platform 6 and JBoss AS 7 are now distributed with security enabled for the management interfaces. A few of the quickstarts use these management interfaces and require that you create a management or application user to access the running application. A script is provided in the `JBOSS_HOME/bin` directory for that purpose.
+
+The following procedures describe how to add a user with the appropriate permissions to run the quickstarts that depend on them.
+
+
+<a id="addmanagementuser"></a>
+#### Add an Management User
+1. Open a command line
+2. Type the command for your operating system
+
+        For Linux:   JBOSS_HOME/bin/add-user.sh
+        For Windows: JBOSS_HOME\bin\add-user.bat
+3. You should see the following response:
+
+        What type of user do you wish to add? 
+
+        a) Management User (mgmt-users.properties) 
+        b) Application User (application-users.properties)
+        (a):
+
+    At the prompt, press enter to use the default Management User
+4. You should see the following response:
+
+        Enter the details of the new user to add.
+        Realm (ManagementRealm) : 
+
+    If the quickstart README specifies a realm, type it here. Otherwise, press enter to use the default `ManagementRealm`. 
+5. When prompted, enter the following
+ 
+        Username : admin
+        Password : (choose a password for the admin user)
+    Repeat the password
+6. Choose yes for the remaining promts.
+
+
+<a id="addapplicationuser"></a>
+#### Add an Application User 
+
+1. Open a command line
+2. Type the command for your operating system
+
+        For Linux:   JBOSS_HOME/bin/add-user.sh
+        For Windows: JBOSS_HOME\bin\add-user.bat
+3. You should see the following response:
+
+        What type of user do you wish to add? 
+
+        a) Management User (mgmt-users.properties) 
+        b) Application User (application-users.properties)
+        (a):
+
+    At the prompt, type:  b
+4. You should see the following response:
+
+        Enter the details of the new user to add.
+        Realm (ApplicationRealm) : 
+
+    If the quickstart README specifies a realm, type it here. Otherwise, press enter to use the default `ApplicationRealm`. 
+5. When prompted, enter the the Username and Passord. If the quickstart README specifies a Username nad Password, enter them here. Otherwise, use the default Username `quickstartUser` and Password `quickstartPassword`.
+ 
+        Username : quickstartUser
+        Password : quickstartPassword
+6. At the next prompt, you will be asked "What roles do you want this user to belong to?". If the quickstart README specifies a role to use, enter that here. Otherwise, type the role: `guest`
+
+
+<a id="postgresql"></a>
+### Install and Configure the PostgreSQL Database
+
+Some of the quickstarts require the PostgreSQL database. This section describes how to install and configure the database for use with these quickstarts.
+
+
+#### Download and Install PostgreSQL 9.1.2
+
+The following is a brief overview of how to install PostgreSQL. More detailed instructions for installing and starting PostgreSQL can be found on the internet.
+
+_Note_: Although the database only needs to be installed once, to help partition each quickstart we recommend using a separate database per quickstart. Where you see QUICKSTART_DATABASENAME, you should replace that with the name provided in the particular quickstart's README
+
+##### Linux Instructions
+
+Use the following steps to install and configure PostgreSQL on Linux. You can download the PDF installation guide here: <http://yum.postgresql.org/files/PostgreSQL-RPM-Installation-PGDG.pdf>
+  
+1. Install PostgreSQL
+    * The yum install instructions for PostgreSQL can be found here: <http://yum.postgresql.org/howtoyum.php/>
+    * Download the repository RPM from here: <http://yum.postgresql.org/repopackages.php/>
+    * To install PostgreSQL, in a command line type: 
+
+            sudo rpm -ivh pgdg-fedora91-9.1-4.noarch.rpm
+    * Edit your distributions package manager definitions to exclude PostgreSQL. See the "important note" on <http://yum.postgresql.org/howtoyum.php/> for details on how to exclude postgresql packages from the repository of the distribution.
+    * Install _postgresql91_ and _postgres91-server_ by typing the following in a command line:
+
+            sudo yum install postgresql91 postgresql91-server
+2. Set a password for the _postgres_ user
+    * In a command line, login as root and set the postgres password by typing the following commands: 
+
+            su
+            passwd postgres
+    * Choose a password
+3. Configure the test database
+    * In a command line, login as the _postgres_ user, navigate to the postgres directory, and initialize the database by typing:
+
+            su postgres
+            cd /usr/pgsql-9.1/bin/
+            ./initdb -D /var/lib/pgsql/9.1/data
+    * Modify the `/var/lib/pgsql/9.1/data/pg_hba.conf` file to set the authentication scheme to password for tcp connections. Modify the line following the IPv4 local connections: change trust to to password. The line should look like this:
+    
+            host    all    all    127.0.0.1/32    password
+    * Modify the `/var/lib/pgsql/9.1/data/postgresql.conf` file to allow prepared transactions and reduce the maximum number of connections
+
+            max_prepared_transactions = 10
+            max_connections = 10
+
+4. Start the database server 
+    * In the same command line, type the following:
+
+            ./postgres -D /var/lib/pgsql/9.1/data
+    * Note, this command does not release the command line. In the next step you need to open a new command line.
+5.  Create a database for the quickstart (as noted above, replace QUICKSTART_DATABASENAME with the name provided in the particular quickstart)
+    * Open a new command line and login again as the _postgres_ user, navigate to the postgres directory, and create the  database by typing the following:
+
+            su postgres
+            cd /usr/pgsql-9.1/bin/
+            ./createdb QUICKSTART_DATABASENAME
+
+
+##### Mac OS X Instructions
+
+The following are the steps to install and start PostgreSQL on Mac OS X. Note that this guide covers only 'One click installer' option.
+
+1. Install PostgreSQL using Mac OS X One click installer: <http://www.postgresql.org/download/macosx/>
+2. Allow prepared transactions:
+
+        sudo su - postgres
+    * Edit `/Library/PostgreSQL/9.1/data/postgresql.conf` to allow prepared transactions
+      
+            max_prepared_transactions = 10
+3. Start the database server 
+
+        cd /Library/PostgreSQL/9.1/bin
+        ./pg_ctl -D ../data restart
+4. Create a database for the quickstart (as noted above, replace QUICKSTART_DATABASENAME with the name provided in the particular quickstart)
+
+        ./createdb QUICKSTART_DATABASENAME
+5.  Verify that everything works. As the _postgres_ user using the password you specified in Step 1, type the following:
+
+        cd /Library/PostgreSQL/9.1/bin
+        ./psql -U postgres    
+    At the prompt
+
+        start transaction;
+        select 1;
+        prepare transaction 'foobar';
+        commit prepared 'foobar';
+    
+
+##### Windows Instructions
+
+Use the following steps to install and configure PostgreSQL on Windows:
+
+1. Install PostgreSQL using the Windows installer: <http://www.postgresql.org/download/windows/>
+2. Enable password authentication and configure PostgreSQL to allow prepared transactions
+    * Modify the `C:\Program Files\PostgreSQL\9.1\data\pg_hba.conf` file to set the authentication scheme to password for tcp connections. Modify the line following the IPv4 local connections: change trust to to password. The line should look like this:
+
+            host    all    all    127.0.0.1/32    password`
+    * Modify the `C:\Program Files\PostgreSQL\9.1\data\postgresql.conf` file to allow prepared transactions and reduce the maximum number of connections:
+
+            max_prepared_transactions = 10
+            max_connections = 10
+3.  Start the database server
+    * Choose Start -> All Programs -> PostgreSQL 9.1\pgAdmin III
+    * Server Groups -> Servers (1) -> PostgreSQL 9.1 (localhost:5432)
+    * Right click -> Stop Service
+    * Right click -> Start Service
+4.   Create a database for the quickstart (as noted above, replace QUICKSTART_DATABASENAME with the name provided in the particular quickstart)
+    * Open a command line
+
+            cd C:\Program Files\PostgreSQL\9.1\bin\
+            createdb.exe -U postgres QUICKSTART_DATABASENAME
+
+
+#### Create a Database User
+
+1.  Make sure the PostgreSQL bin directory is in your PATH. 
+    * Open a command line and change to the root directory
+            psql
+    * If you see an error that 'psql' is not a recognized command, you need to add the PostgreSQL bin directory to your PATH environment variable. 
+2.  As the _postgres_ user, start the PostgreSQL interactive terminal by typing the following command:
+
+        psql -U postgres
+3.  Create the user sa with password sa and all privileges on the database by typing the following commands (as noted above, replace QUICKSTART_DATABASENAME with the name provided in the particular quickstart):
+
+        create user sa with password 'sa';
+        grant all privileges on database "QUICKSTART_DATABASENAME" to sa;
+        \q
+4.  Test the connection to the database using the TCP connection as user `'sa'`. This validates that the change to `pg_hba.conf` was made correctly: 
+
+        psql -h 127.0.0.1 -U sa QUICKSTART_DATABASENAME
+
+<a id="addpostgresqlmodule"></a>
+
+#### Add the PostgreSQL Module to the JBoss server
+
+1. Create the following directory structure: `JBOSS_HOME/modules/org/postgresql/main`
+2. Download the JBDC driver from <http://jdbc.postgresql.org/download.html> and copy it into the directory you created in the previous step.
+3. In the same directory, create a file named module.xml. Copy the following contents into the file:
+
+        <?xml version="1.0" encoding="UTF-8"?>
+        <module xmlns="urn:jboss:module:1.0" name="org.postgresql">
+            <resources>
+                <resource-root path="postgresql-9.1-901.jdbc4.jar"/>
+            </resources>
+            <dependencies>
+                <module name="javax.api"/>
+                <module name="javax.transaction.api"/>
+            </dependencies>
+        </module>
+
+<a id="addpostgresqldriver"></a>
+
+#### Add the Driver Configuration to the JBoss server
+
+You can configure the driver using the JBoss CLI or by manually editing the configuration file.
+
+##### Configure the Driver Using the JBoss CLI
+
+1. Start the JBoss Enterprise Application Platform 6 or JBoss AS 7 Server by typing the following: 
+
+        For Linux:  JBOSS_HOME_SERVER_1/bin/standalone.sh -c standalone-full.xml
+        For Windows:  JBOSS_HOME_SERVER_1\bin\standalone.bat -c standalone-full.xml
+2. To start the JBoss CLI tool, open a new command line, navigate to the JBOSS_HOME directory, and type the following:
+    
+        For Linux: bin/jboss-cli.sh --connect
+        For Windows: bin\jboss-cli.bat --connect
+3. At the prompt, type the following:
+
+        [standalone@localhost:9999 /] /subsystem=datasources/jdbc-driver=postgresql:add(driver-name=postgresql,driver-module-name=org.postgresql,driver-xa-datasource-class-name=org.postgresql.xa.PGXADataSource)
+
+
+##### Configure the Driver Manually
+
+1.  Backup the file: `JBOSS_HOME/standalone/configuration/standalone-full.xml`
+2.  Open the `JBOSS_HOME/standalone/configuration/standalone-full.xml` file in an editor and locate the subsystem `urn:jboss:domain:datasources:1.0`. 
+3.  Add the following driver to the `<drivers>` section that subsystem. You may need to merge with other drivers in that section:
+
+        <driver name="postgresql" module="org.postgresql">
+            <xa-datasource-class>org.postgresql.xa.PGXADataSource</xa-datasource-class>
+        </driver>
+
+#### Important Quickstart Testing Information
+
+The installation of PostgreSQL is a one time procedure. However, unless you have set up the database to automatically start as a service, you must repeat the instructions "Start the database server" above for your operating system every time you reboot your machine.
+
+
+<a id="byteman"></a>
+### Install and Configure Byteman 
+
+_Byteman_ is used by a few of the quickstarts to demonstrate distributed transaction processing and crash recovery.
+
+#### What is It?
+
+_Byteman_ is a tool which simplifies tracing and testing of Java programs. Byteman allows you to insert extra Java code into your application, either as it is loaded during JVM startup or after it has already started running. This code can be used to trace what the application is doing and to monitor and debug deployments to be sure it is operating correctly. You can also use _Byteman_ to inject faults or synchronization code when testing your application. A few of the quickstarts use _Byteman_ to halt an application server in the middle of a distributed transaction to demonstrate crash recovery.
+
+<a id="byteman-install"></a>
+#### Download and Configure Byteman
+
+1. Download Byteman from <http://www.jboss.org/byteman/downloads/>
+2. Extract the ZIP file to a directory of your choice.
+3. By default, the Byteman download provides unrestricted permissions to _others_ which can cause a problem when running Ruby commands for the OpenShift quickstarts. To restrict the permissions to _others_, open a command line and type the followinge:
+
+        cd byteman-download-2.0.0/
+        chmod -R o-rwx byteman-download-2.0.0/
+
+<a id="byteman-halt"></a>
+#### Halt the Application Using Byteman
+
+_NOTE_: The Byteman scripts only work in JTA mode. They do not work in JTS mode. If you have configured the server for a JTS quickstart, you must follow the instructions to [Remove the JTS Configuration from the JBoss server](jts/README.md#remove-jts-configuration) before making the following changes. Otherwise Byteman will not halt the server. 
+
+When instructed to use Byteman to halt the application, perform the following steps:
+ 
+1. Find the appropriate configuration file for your operating system in the list below.
+
+        For Linux: JBOSS_HOME/bin/standalone.conf 
+        For Windows: JBOSS_HOME\bin\standalone.conf.bat
+
+2. **Important**: Make a backup copy of this file before making any modifications.
+
+3. The quickstart README should specify the text you need to append to the server configuration file.
+
+4. Open the configuration file and append the text specified by the quickstart to the end of the file. Make sure to replace the file paths with the correct location of your quickstarts and the _Byteman_ download. 
+
+5. The following is an example of of the configuration changes needed for the _jta-crash-rec_ quickstart: 
+
+    For Linux, open the `JBOSS_HOME/bin/standalone.conf` file and append the following line:
+
+        JAVA_OPTS="-javaagent:/PATH_TO_BYTEMAN_DOWNLOAD/lib/byteman.jar=script:/PATH_TO_QUICKSTARTS/jta-crash-rec/src/main/scripts/xa.btm ${JAVA_OPTS}" 
+    For Windows, open the `JBOSS_HOME\bin\standalone.conf.bat` file and append the following line:
+
+        SET "JAVA_OPTS=%JAVA_OPTS% -javaagent:C:PATH_TO_BYTEMAN_DOWNLOAD\lib\byteman.jar=script:C:\PATH_TO_QUICKSTARTS\jta-crash-rec\src\main\scripts\xa.btm %JAVA_OPTS%"
+
+<a id="byteman-disable"></a>
+
+#### Disable the Byteman Script
+ 
+When you are done testing the quickstart, remember to restore the configuration file with the backup copy you made in step 2 above.
+
