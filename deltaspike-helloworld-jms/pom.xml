@@ -38,7 +38,7 @@
 
         <!-- Define the version of the JBoss BOMs we want to import. The 
             JBoss BOMs specify tested stacks. -->
-        <version.org.jboss.bom>1.0.3.Final</version.org.jboss.bom>
+        <version.com.redhat.jboss.wfk.boms>1.0.4.Final-redhat-1</version.com.redhat.jboss.wfk.boms>
 
         <!-- Weld Version -->
         <version.org.jboss.weld>1.1.9.Final</version.org.jboss.weld>
@@ -69,9 +69,9 @@
                 use this stack with any version of JBoss AS that implements Java EE 6, not 
                 just JBoss AS 7! -->
             <dependency>
-                <groupId>org.jboss.bom</groupId>
+                <groupId>com.redhat.jboss.wfk.boms</groupId>
                 <artifactId>jboss-javaee-6.0-with-deltaspike</artifactId>
-                <version>${version.org.jboss.bom}</version>
+                <version>${version.com.redhat.jboss.wfk.boms}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
