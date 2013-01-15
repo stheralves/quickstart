@@ -36,7 +36,7 @@
 
         <!-- JBoss dependency versions -->
         <version.org.jboss.as.plugins.maven.plugin>7.3.Final</version.org.jboss.as.plugins.maven.plugin>
-        <version.com.redhat.jboss.wfk.boms>1.0.1.Final-redhat-1</version.com.redhat.jboss.wfk.boms>
+        <version.com.redhat.jboss.wfk.boms>1.0.4.Final-redhat-1</version.com.redhat.jboss.wfk.boms>
 
         <!-- other plugin versions -->
         <version.compiler.plugin>2.3.1</version.compiler.plugin>

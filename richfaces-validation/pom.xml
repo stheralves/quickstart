@@ -41,7 +41,7 @@
 
         <!-- JBoss dependency versions -->
         <version.org.jboss.as.plugins.maven.plugin>7.3.Final</version.org.jboss.as.plugins.maven.plugin>
-        <version.com.redhat.jboss.wfk.boms>1.0.1.Final-redhat-1</version.com.redhat.jboss.wfk.boms>
+        <version.com.redhat.jboss.wfk.boms>1.0.4.Final-redhat-1</version.com.redhat.jboss.wfk.boms>
 
         <version.org.hibernate-jpamodelgen>1.1.1.Final</version.org.hibernate-jpamodelgen>
         <version.org.hibernate.validator>4.2.0.Final-redhat-1</version.org.hibernate.validator>
