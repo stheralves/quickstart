@@ -172,6 +172,7 @@
         <dependency>
             <groupId>org.jboss.shrinkwrap.resolver</groupId>
             <artifactId>shrinkwrap-resolver-impl-maven</artifactId>
+            <version>1.0.0-beta-7</version> <!-- this needs to be fixed, not supported in with-tools BOM -->
             <scope>test</scope>
         </dependency>
     </dependencies>
