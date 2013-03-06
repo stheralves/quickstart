@@ -61,6 +61,19 @@
                 <module>richfaces-validation</module>
             </modules>
         </profile>
+        <profile>
+            <!-- All the quickstarts that represents Deltaspike
+             Technology Preview certification -->
+            <id>deltaspike</id>
+            <modules>
+                <module>deltaspike-authorization</module>
+                <module>deltaspike-beanmanagerprovider</module>
+                <module>deltaspike-exception-handling</module>
+                <module>deltaspike-helloworld-jms</module>
+                <module>deltaspike-projectstage</module>
+                <module>kitchensink-deltaspike</module>
+            </modules>
+        </profile>        
     </profiles>
 
     <build>
