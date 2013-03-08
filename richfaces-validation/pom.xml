@@ -77,9 +77,9 @@
             <!-- RichFaces defines a Bill of Materials including dependencies which are not part 
                  of Java EE 6 API -->
             <dependency>
-                <groupId>org.richfaces</groupId>
-                <artifactId>richfaces-bom</artifactId>
-                <version>${version.org.richfaces}</version>
+                <groupId>org.jboss.bom</groupId>
+                <artifactId>jboss-javaee-6.0-with-richfaces</artifactId>
+                <version>${version.org.jboss.bom}</version>
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
