@@ -44,9 +44,7 @@
         <version.org.jboss.bom>1.0.4.Final-redhat-wfk-1</version.org.jboss.bom>
 
         <version.org.hibernate-jpamodelgen>1.1.1.Final</version.org.hibernate-jpamodelgen>
-        <version.org.hibernate.validator>4.2.0.Final-redhat-1</version.org.hibernate.validator>
-
-        <version.org.richfaces>4.3.0.Final-redhat-1</version.org.richfaces>
+        <version.org.hibernate.validator>4.2.0.Final-redhat-2</version.org.hibernate.validator>
 
         <!-- other plugin versions -->
         <version.compiler.plugin>2.3.1</version.compiler.plugin>
