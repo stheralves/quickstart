@@ -33,7 +33,7 @@ VERSION_REGEX='([0-9]*)\.([0-9]*)([a-zA-Z0-9\.]*)'
 # EAP team email subject
 EMAIL_SUBJECT="\${RELEASEVERSION} of JBoss Quickstarts released, please merge with https://github.com/jboss-eap/quickstart, tag and add to EAP maven repo build"
 # EAP team email To ?
-EMAIL_TO="pgier@redhat.com kpiwko@redhat.com"
+EMAIL_TO="pgier@redhat.com maschmid@redhat.com"
 EMAIL_FROM="\"JDF Publish Script\" <benevides@redhat.com>"
 
 
@@ -69,7 +69,7 @@ release()
 {
    echo "Regenerating html from markdown"
    $DIR/release-utils.sh -m
-   echo "Releasing JBoss AS Quickstarts version $RELEASEVERSION"
+   echo "Releasing JBoss WFK Quickstarts version $RELEASEVERSION"
    $DIR/release-utils.sh -u -o $SNAPSHOTVERSION -n $RELEASEVERSION
    git commit -a -m "Prepare for $RELEASEVERSION release"
    git tag -a $RELEASEVERSION -m "Tag $RELEASEVERSION"
