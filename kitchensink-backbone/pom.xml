@@ -21,7 +21,7 @@
 
     <groupId>org.jboss.as.quickstarts</groupId>
     <artifactId>jboss-as-kitchensink-backbone</artifactId>
-    <version>7.1.2-SNAPSHOT</version>
+    <version>2.3.0</version>
     <packaging>war</packaging>
     <name>JBoss AS Quickstarts: Backbone</name>
     <description>A Backbone.js and Java EE 6 HTML5 mobile web application for use with JBoss.</description>
