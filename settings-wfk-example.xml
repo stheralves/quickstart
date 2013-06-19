@@ -167,7 +167,7 @@ under the License.
    | List of profiles that are active for all builds.
    |-->
   <activeProfiles>
-    <activeProfile>jboss-wfk-repository</activeProfile>
     <activeProfile>jboss-eap-repository</activeProfile>
+    <activeProfile>jboss-wfk-repository</activeProfile>
   </activeProfiles>
 </settings>
