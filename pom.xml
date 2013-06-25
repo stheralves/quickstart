@@ -171,7 +171,6 @@
                 <module>kitchensink-deltaspike</module>
                 <module>kitchensink-html5-mobile</module>
                 <module>kitchensink-rf</module>
-                <module>picketlink-deltaspike-authorization</module>
                 <module>richfaces-validation</module>
                 <module>shrinkwrap-resolver</module>
             </modules>
