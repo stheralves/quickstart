@@ -52,7 +52,8 @@ under the License.
    | Default: ~/.m2/repository
   <localRepository>/path/to/maven/repository</localRepository>
   -->
-
+  <localRepository>${repository}</localRepository>
+  
   <!-- mirrors
    | This is a list of mirrors to be used in downloading artifacts from remote repositories.
    | 
